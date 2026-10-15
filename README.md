@@ -41,11 +41,10 @@ jeu, et lire son trafic peut être vu comme tel. Tu l'utilises à tes risques.
    votre ordinateur » (SmartScreen), parce que l'exe n'est pas signé. Clique sur
    « Informations complémentaires », puis sur « Exécuter quand même ».
 4. **Npcap**, si tu ne l'as pas déjà. C'est ce qui permet de lire le trafic
-   réseau. L'outil propose de le télécharger depuis npcap.com et de lancer son
-   installation : réponds `O`, accepte la demande d'autorisation de Windows,
-   garde les options par défaut et clique sur « Install ». Il ne faut le faire
-   qu'une fois. Tu peux aussi l'installer toi-même :
-   https://npcap.com/#download.
+   réseau. L'outil l'indique au lancement : clique sur « Installer Npcap »,
+   accepte la demande d'autorisation de Windows, garde les options par défaut et
+   clique sur « Install ». Il ne faut le faire qu'une fois. Tu peux aussi
+   l'installer toi-même : https://npcap.com/#download.
 
 Pour vérifier que le fichier n'a pas été modifié, compare son empreinte avec
 celle publiée à côté de lui dans la Release (`.sha256`) :
@@ -56,15 +55,17 @@ certutil -hashfile dofus-craft-prices.exe SHA256
 
 ## Premier lancement
 
-L'outil pose trois questions :
+La fenêtre demande trois réglages :
 
-1. **Ta clé personnelle.** L'admin de Dofus-Craft te la donne. Colle-la avec un
-   clic droit dans la fenêtre. Elle est vérifiée tout de suite.
-2. **Ton serveur**, par son numéro dans la liste ou par son nom.
-3. **La carte réseau** : rien à faire, elle est détectée automatiquement.
+1. **Ta clé personnelle.** L'admin de Dofus-Craft te la donne. Colle-la avec
+   Ctrl+V.
+2. **Ton serveur**, dans la liste.
+3. **La carte réseau** : laisse « Automatique ».
 
-Tes réponses sont enregistrées dans `config.toml`, à côté de l'exe. Pour tout
-recommencer, supprime ce fichier.
+Clique sur « Enregistrer et démarrer ». La clé est vérifiée tout de suite : si
+elle est refusée, la fenêtre le dit en rouge. Les réglages sont enregistrés dans
+`config.toml`, à côté de l'exe, et restent modifiables avec le bouton
+« Réglages ».
 
 **Ta clé est personnelle, ne la partage pas.** Si elle fuite, demande-en une
 nouvelle : l'ancienne sera révoquée.
@@ -72,31 +73,27 @@ nouvelle : l'ancienne sera révoquée.
 ## Au quotidien
 
 Lance l'outil, puis le jeu, dans n'importe quel ordre. Garde la fenêtre ouverte
-et consulte des ressources à l'HDV. Toutes les 30 secondes environ, une ligne
-indique ce qui a été envoyé :
-
-```
-[envoi] envoi actif (mapping 3)
-[envoi] 12 prix envoyés
-```
+et consulte des ressources à l'HDV. Le voyant en haut indique l'état : vert
+« Envoi actif » quand tout va bien. Toutes les 30 secondes environ, la liste
+« Activité » indique ce qui est parti, par exemple « 12 prix envoyés », et le
+compteur « Prix envoyés » augmente.
 
 Les prix qui n'ont pas pu partir (pas d'internet, serveur indisponible) sont
 gardés dans `upload-queue.json` et renvoyés plus tard, même après un
 redémarrage.
 
-## Messages que tu peux voir
+## Ce que le voyant peut dire
 
-| message | ce que ça veut dire |
+| voyant | ce que ça veut dire |
 |---|---|
-| `Dofus a été mis à jour (...), l'outil attend sa mise à jour` | Ankama a changé le format des messages avec la mise à jour. Rien n'est envoyé tant que Dofus-Craft n'a pas publié le nouveau format. Ça reprend tout seul, sans rien télécharger. |
-| `cet outil est trop ancien` | Télécharge la nouvelle version avec le lien affiché. |
-| `clé refusée` | Ta clé est fausse ou a été révoquée. Supprime `config.toml` et recolle-la, ou demande-en une nouvelle. |
-| `plafond du jour atteint` | Tu as envoyé beaucoup de prix aujourd'hui. Les suivants partent demain. |
-| `Npcap n'est pas installé` | Relance l'outil et réponds `O`, ou installe Npcap toi-même depuis https://npcap.com/#download. |
-| `version introuvable, l'envoi reste en pause` | Dofus n'est pas installé à l'endroit habituel. Ajoute dans `config.toml` une ligne `install = 'D:\Jeux\Dofus-dofus3'`, avec ton propre chemin. |
+| vert, « Envoi actif » | Tout va bien. |
+| orange, « En pause : Dofus a été mis à jour… » | Ankama a changé le format des messages avec la mise à jour. Rien n'est envoyé tant que Dofus-Craft n'a pas publié le nouveau format. Ça reprend tout seul, sans rien télécharger. |
+| orange, « En pause : version de Dofus introuvable… » | Dofus n'est pas installé à l'endroit habituel. Ajoute dans `config.toml` une ligne `install = 'D:\Jeux\Dofus-dofus3'`, avec ton propre chemin, puis relance l'outil. |
+| orange, « Plafond du jour atteint » | Tu as envoyé beaucoup de prix aujourd'hui. Les suivants partent demain. |
+| rouge, « Outil trop ancien » | Clique sur « Télécharger la nouvelle version ». |
+| rouge, « Clé refusée » | Ta clé est fausse ou a été révoquée. Clique sur « Changer de clé », ou demande-en une nouvelle. |
 
 Si l'outil ne voit aucun prix alors que tu consultes l'HDV, c'est sans doute la
-mauvaise carte réseau. Ajoute dans `config.toml` la ligne
-`adapter = "192.168.1.10"`, en remplaçant le nombre par l'adresse IPv4 que
-donne la commande `ipconfig`.
+mauvaise carte réseau. Dans « Réglages », choisis celle dont l'adresse
+correspond à celle que donne la commande `ipconfig`.
 
