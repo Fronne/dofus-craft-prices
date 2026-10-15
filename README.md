@@ -27,19 +27,22 @@ jeu, et lire son trafic peut être vu comme tel. Tu l'utilises à tes risques.
 ## Installation
 
 1. **Télécharge** le zip de la [dernière version](https://github.com/berthiercyril/dofus-craft-prices/releases/latest).
-2. **Installe Npcap** : https://npcap.com/#download. Garde les options par
-   défaut. C'est ce qui permet de lire le trafic réseau. Il ne faut le faire
-   qu'une fois.
-3. **Dézippe** le dossier où tu veux, par exemple dans `Documents`.
-4. **Lance `dofus-craft-prices.exe`**. Windows peut afficher « Windows a protégé
+2. **Dézippe** le dossier où tu veux, par exemple dans `Documents`.
+3. **Lance `dofus-craft-prices.exe`**. Windows peut afficher « Windows a protégé
    votre ordinateur » (SmartScreen), parce que l'exe n'est pas signé. Clique sur
    « Informations complémentaires », puis sur « Exécuter quand même ».
+4. **Npcap**, si tu ne l'as pas déjà. C'est ce qui permet de lire le trafic
+   réseau. L'outil propose de le télécharger depuis npcap.com et de lancer son
+   installation : réponds `O`, accepte la demande d'autorisation de Windows,
+   garde les options par défaut et clique sur « Install ». Il ne faut le faire
+   qu'une fois. Tu peux aussi l'installer toi-même :
+   https://npcap.com/#download.
 
 Pour vérifier que le fichier n'a pas été modifié, compare son empreinte avec
 celle publiée à côté du zip (`.sha256`) :
 
 ```
-certutil -hashfile dofus-craft-prices-0.1.0.zip SHA256
+certutil -hashfile dofus-craft-prices-0.2.0.zip SHA256
 ```
 
 ## Premier lancement
@@ -80,7 +83,7 @@ redémarrage.
 | `cet outil est trop ancien` | Télécharge la nouvelle version avec le lien affiché. |
 | `clé refusée` | Ta clé est fausse ou a été révoquée. Supprime `config.toml` et recolle-la, ou demande-en une nouvelle. |
 | `plafond du jour atteint` | Tu as envoyé beaucoup de prix aujourd'hui. Les suivants partent demain. |
-| `Npcap n'est pas installé` | Fais l'étape 2 de l'installation. |
+| `Npcap n'est pas installé` | Relance l'outil et réponds `O`, ou installe Npcap toi-même depuis https://npcap.com/#download. |
 | `version introuvable, l'envoi reste en pause` | Dofus n'est pas installé à l'endroit habituel. Ajoute dans `config.toml` une ligne `install = 'D:\Jeux\Dofus-dofus3'`, avec ton propre chemin. |
 
 Si l'outil ne voit aucun prix alors que tu consultes l'HDV, c'est sans doute la
