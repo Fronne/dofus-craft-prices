@@ -26,8 +26,17 @@ jeu, et lire son trafic peut être vu comme tel. Tu l'utilises à tes risques.
 
 ## Installation
 
-1. **Télécharge** le zip de la [dernière version](https://github.com/berthiercyril/dofus-craft-prices/releases/latest).
-2. **Dézippe** le dossier où tu veux, par exemple dans `Documents`.
+1. **Télécharge l'outil** depuis la
+   [dernière version](https://github.com/berthiercyril/dofus-craft-prices/releases/latest).
+   Deux choix, c'est le même programme :
+   - `dofus-craft-prices.exe` seul, le plus simple :
+     [lien direct](https://github.com/berthiercyril/dofus-craft-prices/releases/latest/download/dofus-craft-prices.exe).
+     Si ton navigateur dit que le fichier est rarement téléchargé, choisis
+     « Conserver ».
+   - le zip, si ton navigateur bloque l'exe. Dézippe-le.
+2. **Range l'exe dans un dossier à lui**, par exemple
+   `Documents\dofus-craft-prices`. L'outil y enregistre sa configuration et les
+   prix qui attendent d'être envoyés.
 3. **Lance `dofus-craft-prices.exe`**. Windows peut afficher « Windows a protégé
    votre ordinateur » (SmartScreen), parce que l'exe n'est pas signé. Clique sur
    « Informations complémentaires », puis sur « Exécuter quand même ».
@@ -39,10 +48,10 @@ jeu, et lire son trafic peut être vu comme tel. Tu l'utilises à tes risques.
    https://npcap.com/#download.
 
 Pour vérifier que le fichier n'a pas été modifié, compare son empreinte avec
-celle publiée à côté du zip (`.sha256`) :
+celle publiée à côté de lui dans la Release (`.sha256`) :
 
 ```
-certutil -hashfile dofus-craft-prices-0.2.0.zip SHA256
+certutil -hashfile dofus-craft-prices.exe SHA256
 ```
 
 ## Premier lancement
